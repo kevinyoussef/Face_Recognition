@@ -14,22 +14,35 @@ All the above steps should be in one function called process_image()
 """
 
 # TODO: Import OpenCV
-
+"""import numpy as np"""
+import cv2
 
 # TODO: Edit this function
 def process_image():
-    return
+	image = cv2.imread('geisel.jpg', 0)
+	cv2.imwrite('geiselgray.jpg', image)
+	half = cv2.resize(image, None, fx=0.5, fy=0.5)
+	ghalf = cv2.imwrite('geiselhalf.jpg', half)
+	dim=half.shape
+	center= [dim[0]/2, dim[1]/2]
+	print(dim)
+	print(center)	
+	box = cv2.rectangle(half,(((center[1])-50),(center[0])-50),(50+(center[1]),(50+(center[0]))),(255,255,255),5) 
+	#box = cv2.rectangle(half,(67-5,),(5+(dim[1]),(5+(dim[0]))),(255,0,0),1)
+	cv2.imwrite('gesielbox.jpg', box)
+	return
 
 # Just prints 'Hello World! to screen.
 def hello_world():
-    print('Hello World!')
-    return
+	print('Hello World!')
+	return
 
 # TODO: Call process_image function.
 def main():
-    hello_world()
-    return
+	hello_world()
+	process_image()
+	return
 
 
 if(__name__ == '__main__'):
-    main()
+	main()
